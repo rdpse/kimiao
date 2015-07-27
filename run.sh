@@ -14,7 +14,7 @@ wget -O- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PJS_VERSION-
 mv phantomjs-$PJS_VERSION-linux-x86_64 phantomjs
 ln -s phantomjs/bin/phantomjs /usr/local/sbin/phantomjs
 
-git clone <rep>
+git clone https://github.com/rdpse/kimiao.git .
 screen -S kimiao ./kimiao.rb
 
 
