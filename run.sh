@@ -5,7 +5,7 @@ PJS_VERSION=1.9.8
 
 if [ -d $HOMEDIR/kimiao ]; then
   export PATH=$HOMEDIR/phantomjs/bin:$PATH
-  screen -S kimiao sh -c 'ruby '$HOMEDIR'/kimiao/kimiao.rb'
+  screen -S kimiao sh -c 'ruby '$HOMEDIR'/kimiao.rb'
   exit 0
 fi
 
@@ -30,8 +30,8 @@ wget -O- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PJS_VERSION-
 mv phantomjs-$PJS_VERSION-linux-x86_64 phantomjs
 export PATH=$HOMEDIR/phantomjs/bin:$PATH
 
-git clone https://github.com/rdpse/kimiao.git
-cd $HOMEDIR/kimiao/
+wget https://raw.githubusercontent.com/rdpse/kimiao/master/kimiao.rb
+cd $HOMEDIR
   sudo gem install capybara poltergeist
   chmod +x kimiao.rb
   screen -S kimiao sh -c 'ruby kimiao.rb'
