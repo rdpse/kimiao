@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 #encoding: utf-8
 
-require 'bundler/setup'
-
 require 'capybara'
 require 'capybara/dsl'
 require 'capybara/poltergeist'
