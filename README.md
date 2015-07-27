@@ -9,7 +9,7 @@ Make sure your account was successfully created by logging in to the correspondi
 
 Usage
 ===========
-Run `sudo wget -O - https://raw.githubusercontent.com/rdpse/kimiao/master/run.sh | bash`
+Run `wget -O - https://raw.githubusercontent.com/rdpse/kimiao/master/run.sh | bash`
 
 Tested on Debian 8 x64 and CentOS 7 x64.
 
