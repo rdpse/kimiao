@@ -7,7 +7,11 @@ require 'capybara/poltergeist'
 require 'io/console'
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, :window_size => [1024, 768])
+  Capybara::Poltergeist::Driver.new(app,
+        :window_size => [1024, 768],
+        :timeout => 180,
+        :phantomjs_options =>
+        [ '--load-images=true','--ignore-ssl-errors=yes'])
 end
 
 Capybara.javascript_driver = :poltergeist
@@ -15,14 +19,15 @@ Capybara.current_driver = :poltergeist
 Capybara.app_host = 'http://kimsufi.com/fr'
 Capybara.default_wait_time = 10
 
-$svmodels = { "KS-1"           =>   "150sk10",
-                    "KS-2"           =>   "150sk20",
-                    "KS-2 SSD"   =>   "150sk22",
-                    "KS-3"            =>   "150sk30",
-                    "KS-4"            =>   "150sk40",
-                    "KS-5"            =>   "150sk50",
-                    "KS-6"            =>   "150sk60",
-                  }
+$svmodels = { 
+	"KS-1"           =>   "150sk10",
+	"KS-2"           =>   "150sk20",
+	"KS-2 SSD"       =>   "150sk22",
+	"KS-3"           =>   "150sk30",
+	"KS-4"           =>   "150sk40",
+	"KS-5"           =>   "150sk50",
+	"KS-6"           =>   "150sk60",
+}
 
 puts 'Specify the server model (ex. KS-1, KS-2 SSD, etc):'
 STDOUT.flush
@@ -63,13 +68,14 @@ puts 'Opening browser and checking availability...'
 class Order
   include Capybara::DSL
 
-  def do_order
-    opage = "/commande/kimsufi.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
+  def crawl_and_order
+    kspage = "/commande/kimsufi.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
+    syspage =
     avail =
 
     until avail
       begin
-        visit opage
+        visit kspage
         sleep(2)
         avail = page.has_text?('Récapitulatif de votre commande')
         time = Time.new.strftime("%H:%M:%S")
@@ -95,10 +101,11 @@ class Order
 	retry
       else
         puts "[#{time}] Server is not available yet."
+        page.execute_script "window.close()"
       end
     end
   end
 end
 
-Order.new.do_order
+Order.new.crawl_and_order
 
