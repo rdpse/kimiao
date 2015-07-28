@@ -15,13 +15,6 @@ Capybara.current_driver = :poltergeist
 Capybara.app_host = 'http://kimsufi.com/fr'
 Capybara.default_wait_time = 10
 
-$oproof = 'order.png'
-
-if File.exist?($oproof)
-    puts 'Server has been acquired already.'
-    exit(-1)
-end
-
 $svmodels = { "KS-1"           =>   "150sk10",
                     "KS-2"           =>   "150sk20",
                     "KS-2 SSD"   =>   "150sk22",
@@ -92,7 +85,7 @@ class Order
           page.click_button('Confirmer et payer ma commande')
           sleep(5)
 
-          page.save_screenshot($oproof)
+          page.save_screenshot(oproof.png)
           puts "[#{time}] Your #{$svm} server has been successfully acquired."
           exit(-1)
         end
