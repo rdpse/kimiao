@@ -10,13 +10,13 @@ if [ -f $RBFILE ]; then
   exit 0
 fi
 
-declare -a deps=('ruby' 'ruby-dev' 'screen' 'git' 'build-essential' 'bison' 'openssl'
-  'libreadline6' 'libreadline6-dev' 'curl' 'git-core' 'zlib1g' 'zlib1g-dev'
+declare -a deps=('ruby' 'ruby-dev' 'screen' 'build-essential' 'bison' 'openssl'
+  'libreadline6' 'libreadline6-dev' 'curl' 'zlib1g' 'zlib1g-dev'
   'libssl-dev' 'libyaml-dev' 'libxml2-dev' 'autoconf' 'libc6-dev' 'ncurses-dev'
   'automake' 'libtool' 'libfontconfig1-dev')
 
-declare -a depsrhel=('ruby' 'ruby-devel' 'screen' 'patch' 'git' 'gcc-c++' 'kernel-devel' 'bison' 'openssl-devel'
-  'readline-devel' 'curl' 'git-core' 'zlib-devel'
+declare -a depsrhel=('ruby' 'ruby-devel' 'screen' 'patch' 'gcc-c++' 'kernel-devel' 
+  'bison' 'openssl-devel' 'readline-devel' 'curl' 'zlib-devel'
   'libyaml-devel' 'libxml2-devel' 'autoconf' 'glibc-devel' 'ncurses-devel'
   'automake' 'libtool' 'libfontconfig1-dev')
 
