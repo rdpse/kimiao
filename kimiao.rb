@@ -26,7 +26,7 @@ $svmodels = {
 	"KS-3"           =>   "150sk30",
 	"KS-4"           =>   "150sk40",
 	"KS-5"           =>   "150sk50",
-	"KS-6"           =>   "150sk60",
+	"KS-6"           =>   "150sk60"
 }
 
 puts 'Specify the server model (ex. KS-1, KS-2 SSD, etc):'
@@ -101,7 +101,6 @@ class Order
 	retry
       else
         puts "[#{time}] Server is not available yet."
-        page.execute_script "window.close()"
       end
     end
   end
