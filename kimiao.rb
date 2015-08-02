@@ -92,13 +92,13 @@ class Order
   include Capybara::DSL
 
   def crawl_and_order
-  	if /sk/.match($svq)
-    	kspage = "https://kimsufi.com/fr/commande/kimsufi.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
+
+    if /sk/.match($svq)
+      kspage = "https://kimsufi.com/fr/commande/kimsufi.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
     else
-    	syspage = "https://eu.soyoustart.com/fr/commande/soYouStart.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
+      syspage = "https://eu.soyoustart.com/fr/commande/soYouStart.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
 
     avail =
-
     until avail
       begin
         visit kspage
@@ -133,4 +133,3 @@ class Order
 end
 
 Order.new.crawl_and_order
-
