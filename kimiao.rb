@@ -97,6 +97,7 @@ class Order
       kspage = "https://kimsufi.com/fr/commande/kimsufi.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
     else
       syspage = "https://eu.soyoustart.com/fr/commande/soYouStart.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
+    end
 
     avail =
     until avail
