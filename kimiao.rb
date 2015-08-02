@@ -48,8 +48,8 @@ $svmodels = {
     "BK-8T"            =>    "141bk1",
     "BK-24T"	        =>    "141bk2",
 
-     "GAME-1"    	   =>   "141game1",
-     "GAME-2"		   =>    "141game2"
+     "GAME-1"    	   =>   "150game1",
+     "GAME-2"		   =>    "150game2"
 }
 
 puts 'Specify the server model (ex. KS-1, KS-2 SSD,  etc):'
@@ -72,11 +72,6 @@ until $svq.is_a?(Fixnum) && $svq.between?(1, 5)
   end
 end
 
-#def choices (var, methods*)
-#    if methods > 1
-#       until var.method[1] && var.method[2]
-#
-
 puts 'Enter your your KS account email:'
 STDOUT.flush
 $ovhemail = gets.chomp
@@ -92,17 +87,16 @@ class Order
   include Capybara::DSL
 
   def crawl_and_order
-
-    if /sk/.match($svq)
-      kspage = "https://kimsufi.com/fr/commande/kimsufi.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
+    if /KS/.match($svm)
+      opage = "https://kimsufi.com/fr/commande/kimsufi.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
     else
-      syspage = "https://eu.soyoustart.com/fr/commande/soYouStart.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
+      opage = "https://eu.soyoustart.com/fr/commande/soYouStart.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
     end
 
     avail =
     until avail
       begin
-        visit kspage
+        visit opage
         sleep(2)
         avail = page.has_text?('Récapitulatif de votre commande')
         time = Time.new.strftime("%H:%M:%S")
@@ -118,7 +112,7 @@ class Order
           page.click_button('Confirmer et payer ma commande')
           sleep(5)
 
-          page.save_screenshot(oproof.png)
+          page.save_screenshot("oproof.png")
           puts "[#{time}] Your #{$svm} server has been successfully acquired."
           exit(-1)
         end
