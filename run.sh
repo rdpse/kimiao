@@ -1,8 +1,7 @@
 #!/bin/bash
 
-export PATH=$HOMEDIR/phantomjs/bin:$PATH
+export PATH=$HOME/phantomjs/bin:$PATH
 
-HOMEDIR=$(echo $HOME)
 RBFILE=$HOMEDIR/kimiao.rb
 PJS_VERSION=1.9.8
 
@@ -27,7 +26,7 @@ elif [ -f /etc/redhat-release ]; then
     sudo yum -y install ${depsrhel[@]}
 fi
 
-cd $HOMEDIR
+cd $HOME
 wget -O- https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-$PJS_VERSION-linux-x86_64.tar.bz2 | tar xj
 mv phantomjs-$PJS_VERSION-linux-x86_64 phantomjs
 
