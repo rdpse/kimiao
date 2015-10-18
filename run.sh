@@ -2,7 +2,7 @@
 
 export PATH=$HOME/phantomjs/bin:$PATH
 
-RBFILE=$HOMEDIR/kimiao.rb
+RBFILE=$HOME/kimiao.rb
 PJS_VERSION=1.9.8
 
 if [ -f $RBFILE ]; then
