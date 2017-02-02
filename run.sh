@@ -21,9 +21,9 @@ depsrhel='ruby ruby-devel screen patch gcc-c++ kernel-devel
   automake libtool libfontconfig1-dev'
 
 if [ -f /etc/debian_version ] || [ -f /etc/lsb-release ]; then
-    sudo apt-get -y install "$deps"
+    sudo apt-get -y install $deps
 elif [ -f /etc/redhat-release ]; then
-    sudo yum -y install "$depsrhel"
+    sudo yum -y install $depsrhel
 fi
 
 cd $HOME
