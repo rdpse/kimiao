@@ -93,11 +93,11 @@ class Order
       opage = "https://eu.soyoustart.com/fr/commande/soYouStart.xml?reference=#{$svmodels[$svm]}&quantity=#{$svq}"
     end
 
-    avail =
+    avail = false
     until avail
       begin
         visit opage
-        sleep(2)
+        sleep(3)
         avail = page.has_text?('Récapitulatif de votre commande')
         time = Time.new.strftime("%H:%M:%S")
         if avail
@@ -127,4 +127,5 @@ class Order
   end
 end
 
-Order.new.crawl_and_order
+order = Order.new
+order.crawl_and_order
