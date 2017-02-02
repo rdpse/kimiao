@@ -1,9 +1,9 @@
 #!/bin/bash
 
-export PATH=$HOME/phantomjs/bin:$PATH
+export PATH="$HOME/phantomjs/bin:$PATH"
 
-RBFILE=$HOME/kimiao.rb
-PJS_VERSION=1.9.8
+RBFILE="$HOME/kimiao.rb"
+PJS_VERSION='2.1.1'
 
 if [ -f $RBFILE ]; then
   screen -S kimiao sh -c 'ruby '$RBFILE''
@@ -21,9 +21,9 @@ depsrhel='ruby ruby-devel screen patch gcc-c++ kernel-devel
   automake libtool libfontconfig1-dev'
 
 if [ -f /etc/debian_version ] || [ -f /etc/lsb-release ]; then
-    sudo apt-get -y install $deps
+    sudo apt-get -y install "$deps"
 elif [ -f /etc/redhat-release ]; then
-    sudo yum -y install $depsrhel
+    sudo yum -y install "$depsrhel"
 fi
 
 cd $HOME
@@ -33,4 +33,4 @@ mv phantomjs-$PJS_VERSION-linux-x86_64 phantomjs
 wget https://raw.githubusercontent.com/rdpse/kimiao/master/kimiao.rb
 sudo gem install capybara poltergeist
 chmod +x $RBFILE
-screen -S kimiao sh -c 'ruby '$RBFILE''
+screen -S kimiao sh -c "ruby $RBFILE"
